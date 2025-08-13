@@ -39,6 +39,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.challangeset_mar.R
 import com.example.challangeset_mar.data.models.People
+import com.example.challangeset_mar.ui.theme.BackArrowColor
+import com.example.challangeset_mar.ui.theme.BackSideColor
+import com.example.challangeset_mar.ui.theme.BackTextColor
+import com.example.challangeset_mar.ui.theme.CardImageGradientEnd
+import com.example.challangeset_mar.ui.theme.CardImageGradientStart
+import com.example.challangeset_mar.ui.theme.FrontArrowColor
+import com.example.challangeset_mar.ui.theme.FrontPrimaryText
+import com.example.challangeset_mar.ui.theme.FrontSecondaryText
+import com.example.challangeset_mar.ui.theme.FrontSideColor
 
 enum class CardFace { Front, Back }
 
@@ -129,7 +138,7 @@ private fun FrontSideCard(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF420794))
+                .background(FrontSideColor)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.vector),
@@ -147,7 +156,20 @@ private fun FrontSideCard(
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.TopStart),
-                colorFilter = ColorFilter.tint(Color(0xFF551DC3))
+                colorFilter = ColorFilter.tint(FrontArrowColor)
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                CardImageGradientStart.copy(alpha = 0.55f),
+                                CardImageGradientEnd.copy(alpha = 0.55f)
+                            )
+                        )
+                    )
             )
 
             Box(
@@ -164,13 +186,13 @@ private fun FrontSideCard(
                         text = craftName,
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFFE6E5FE),
+                        color = FrontPrimaryText,
                         textAlign = TextAlign.Center
                     )
                     Text(
                         text = "$numberOfMembers crew members",
                         fontSize = 18.sp,
-                        color = Color(0xFFB1AEFC),
+                        color = FrontSecondaryText,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(top = 16.dp)
                     )
@@ -201,7 +223,7 @@ private fun BackSideCard(
             .fillMaxSize(),
         shape = backCutCornerShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFCAD5FC))
+        colors = CardDefaults.cardColors(containerColor = BackSideColor)
     ) {
         Box(
             modifier = Modifier
@@ -226,7 +248,7 @@ private fun BackSideCard(
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.TopEnd),
-                colorFilter = ColorFilter.tint(Color(0xFFB9BDF6))
+                colorFilter = ColorFilter.tint(BackArrowColor)
             )
 
             Column(
@@ -239,7 +261,7 @@ private fun BackSideCard(
                         text = "${index + 1}. ${name}",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
-                        color = Color(0xFF1E093B),
+                        color = BackTextColor,
                         modifier = Modifier.padding(vertical = 4.dp)
                     )
                 }

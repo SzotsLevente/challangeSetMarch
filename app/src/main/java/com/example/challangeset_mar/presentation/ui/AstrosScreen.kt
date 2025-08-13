@@ -18,6 +18,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.challangeset_mar.presentation.AstrosUiState
 import com.example.challangeset_mar.presentation.ui.views.AstroCard
+import androidx.compose.foundation.background
+import androidx.compose.ui.graphics.Brush
+import com.example.challangeset_mar.ui.theme.BackgroundGradientEnd
+import com.example.challangeset_mar.ui.theme.BackgroundGradientStart
 
 @Composable
 fun AstrosScreen(
@@ -25,7 +29,15 @@ fun AstrosScreen(
     uiState : AstrosUiState
 ) {
 
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(BackgroundGradientStart, BackgroundGradientEnd)
+                )
+            )
+    ) {
         when {
             uiState.isLoading -> {
                 CircularProgressIndicator(

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import com.example.challangeset_mar.presentation.AstrosViewModel
 import com.example.challangeset_mar.ui.theme.ChallangeSet_marTheme
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.ui.graphics.Color
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ChallangeSet_marTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    containerColor = Color.Transparent
+                ) { innerPadding ->
                     val uiState by viewModel.uiState.collectAsState()
                     
                    AstrosScreen(modifier = Modifier.padding(innerPadding),
